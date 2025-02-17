@@ -1,0 +1,7 @@
+{
+  "name": "find-my-klass",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
