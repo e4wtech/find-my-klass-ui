@@ -43,7 +43,3 @@ jobs:
           channelId: live
         continue-on-error: false # Stop if deployment fails
 
-      - name: Print Firebase CLI Version
-        run: firebase --version
-      - name: List Firebase Projects
-        run: firebase projects:list
