@@ -18,7 +18,7 @@ jobs:
           node-version: 20
 
       - name: Install Firebase CLI
-          run: npm install -g firebase-tools
+        run: npm install -g firebase-tools
 
       - name: Cache node_modules
         uses: actions/cache@v3
@@ -27,7 +27,6 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-
 
       - name: Install Dependencies
         run: npm install
@@ -42,7 +41,7 @@ jobs:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
           channelId: live
-          continue-on-error: false # Stop if deployment fails
+        continue-on-error: false # Stop if deployment fails
 
       - name: Print Firebase CLI Version
         run: firebase --version
