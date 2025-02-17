@@ -28,11 +28,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
+
       - name: Install Dependencies
         run: npm install
 
       - name: Build Ionic Angular App
         run: npm run build --prod  # Adjust for your Angular build
+        continue-on-error: false # Stop if build fails, to avoid deploying broken code
 
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
@@ -40,3 +42,9 @@ jobs:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
           channelId: live
+          continue-on-error: false # Stop if deployment fails
+
+      - name: Print Firebase CLI Version
+        run: firebase --version
+      - name: List Firebase Projects
+        run: firebase projects:list
